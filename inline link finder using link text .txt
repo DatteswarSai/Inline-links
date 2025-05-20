@@ -1,73 +1,37 @@
 (async function () {
   const anchors = Array.from(document.querySelectorAll('a[href]'));
-  const results = [];
+  const allLinks = [];
 
   for (const a of anchors) {
     const text = a.innerText.trim() || '(no text)';
     const href = a.href;
     const domain = new URL(href).hostname;
 
-    results.push({ text, href, domain });
+    allLinks.push({ text, href, domain });
   }
 
-  if (results.length === 0) {
-    alert('No inline links found.');
+  if (allLinks.length === 0) {
+    console.log('No inline links found on this page.');
     return;
   }
 
-  // Create table
-  const table = document.createElement('table');
-  table.border = '1';
-  table.style.borderCollapse = 'collapse';
-  table.style.margin = '20px';
-  table.style.fontFamily = 'Arial, sans-serif';
-  table.style.fontSize = '14px';
+  console.log('%cAll Inline Links:', 'font-weight:bold; color:blue');
+  console.table(allLinks);
 
-  const headerRow = table.insertRow();
-  ['Link Text', 'URL', 'Domain'].forEach(header => {
-    const th = document.createElement('th');
-    th.innerText = header;
-    th.style.padding = '6px';
-    th.style.backgroundColor = '#ddd';
-    headerRow.appendChild(th);
-  });
-
-  results.forEach(({ text, href, domain }) => {
-    const row = table.insertRow();
-    row.dataset.linkText = text.toLowerCase(); // store lowercase text for filtering
-    [text, href, domain].forEach(val => {
-      const cell = row.insertCell();
-      cell.innerText = val;
-      cell.style.padding = '6px';
-    });
-  });
-
-  document.body.appendChild(table);
-
-  // Ask user for filter input
   const filterText = prompt('Enter link text to filter (case-insensitive):');
   if (!filterText) {
-    alert('No filter entered. Showing full table.');
+    console.log('No filter provided. Displaying all links only.');
     return;
   }
 
-  const lowered = filterText.toLowerCase();
-  let matchCount = 0;
+  const matched = allLinks.filter(link =>
+    link.text.toLowerCase().includes(filterText.toLowerCase())
+  );
 
-  // Highlight matching rows
-  Array.from(table.rows).forEach((row, index) => {
-    if (index === 0) return; // skip header
-    if (row.dataset.linkText.includes(lowered)) {
-      row.style.backgroundColor = '#ffff99'; // highlight match
-      matchCount++;
-    } else {
-      row.style.opacity = '0.3'; // dim non-matches
-    }
-  });
-
-  if (matchCount === 0) {
-    alert('No matching links found.');
+  if (matched.length === 0) {
+    console.log(`No matches found for: "${filterText}"`);
   } else {
-    alert(`${matchCount} matching link(s) highlighted in the table.`);
+    console.log(`%cMatched Links for "${filterText}":`, 'font-weight:bold; color:green');
+    console.table(matched);
   }
 })();
