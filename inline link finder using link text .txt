@@ -1,41 +1,21 @@
 (async function () {
-  const linkText = prompt("Enter the link text to search for (case-insensitive):");
-  if (!linkText) {
-    alert("No text entered. Exiting.");
-    return;
-  }
-
   const anchors = Array.from(document.querySelectorAll('a[href]'));
   const results = [];
 
   for (const a of anchors) {
-    const text = a.innerText.trim();
-    if (text.toLowerCase().includes(linkText.toLowerCase())) {
-      const href = a.href;
-      const domain = new URL(href).hostname;
-      let status = 'N/A';
+    const text = a.innerText.trim() || '(no text)';
+    const href = a.href;
+    const domain = new URL(href).hostname;
 
-      try {
-        const response = await fetch(href, { method: 'HEAD' });
-        status = response.status;
-      } catch (e) {
-        status = 'Fetch Error';
-      }
-
-      results.push({
-        title: text || '(no text)',
-        link: href,
-        domain,
-        status
-      });
-    }
+    results.push({ text, href, domain });
   }
 
   if (results.length === 0) {
-    alert("No matching links found.");
+    alert('No inline links found.');
     return;
   }
 
+  // Create table
   const table = document.createElement('table');
   table.border = '1';
   table.style.borderCollapse = 'collapse';
@@ -44,17 +24,18 @@
   table.style.fontSize = '14px';
 
   const headerRow = table.insertRow();
-  ['Link Title', 'Link', 'Domain', 'Status Code'].forEach(header => {
+  ['Link Text', 'URL', 'Domain'].forEach(header => {
     const th = document.createElement('th');
     th.innerText = header;
     th.style.padding = '6px';
-    th.style.backgroundColor = '#f2f2f2';
+    th.style.backgroundColor = '#ddd';
     headerRow.appendChild(th);
   });
 
-  results.forEach(({ title, link, domain, status }) => {
+  results.forEach(({ text, href, domain }) => {
     const row = table.insertRow();
-    [title, link, domain, status].forEach(val => {
+    row.dataset.linkText = text.toLowerCase(); // store lowercase text for filtering
+    [text, href, domain].forEach(val => {
       const cell = row.insertCell();
       cell.innerText = val;
       cell.style.padding = '6px';
@@ -62,4 +43,31 @@
   });
 
   document.body.appendChild(table);
+
+  // Ask user for filter input
+  const filterText = prompt('Enter link text to filter (case-insensitive):');
+  if (!filterText) {
+    alert('No filter entered. Showing full table.');
+    return;
+  }
+
+  const lowered = filterText.toLowerCase();
+  let matchCount = 0;
+
+  // Highlight matching rows
+  Array.from(table.rows).forEach((row, index) => {
+    if (index === 0) return; // skip header
+    if (row.dataset.linkText.includes(lowered)) {
+      row.style.backgroundColor = '#ffff99'; // highlight match
+      matchCount++;
+    } else {
+      row.style.opacity = '0.3'; // dim non-matches
+    }
+  });
+
+  if (matchCount === 0) {
+    alert('No matching links found.');
+  } else {
+    alert(`${matchCount} matching link(s) highlighted in the table.`);
+  }
 })();
