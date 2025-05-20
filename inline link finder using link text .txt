@@ -1,15 +1,19 @@
-﻿(async function findInlineLinkByText(linkText) {
+(async function () {
+  const linkText = prompt("Enter the link text to search for (case-insensitive):");
+  if (!linkText) {
+    alert("No text entered. Exiting.");
+    return;
+  }
+
   const anchors = Array.from(document.querySelectorAll('a[href]'));
   const results = [];
 
-
   for (const a of anchors) {
     const text = a.innerText.trim();
-    if (text.toLowerCase().includes(linkText.toLowerCase())) {  // Case-insensitive partial match
+    if (text.toLowerCase().includes(linkText.toLowerCase())) {
       const href = a.href;
       const domain = new URL(href).hostname;
       let status = 'N/A';
-
 
       try {
         const response = await fetch(href, { method: 'HEAD' });
@@ -17,7 +21,6 @@
       } catch (e) {
         status = 'Fetch Error';
       }
-
 
       results.push({
         title: text || '(no text)',
@@ -28,26 +31,26 @@
     }
   }
 
-
   if (results.length === 0) {
-    console.log('No matching links found.');
+    alert("No matching links found.");
     return;
   }
 
-
-  // Create a table
   const table = document.createElement('table');
   table.border = '1';
   table.style.borderCollapse = 'collapse';
   table.style.margin = '20px';
+  table.style.fontFamily = 'Arial, sans-serif';
+  table.style.fontSize = '14px';
+
   const headerRow = table.insertRow();
-  ['Title', 'Link', 'Domain', 'Status Code'].forEach(header => {
+  ['Link Title', 'Link', 'Domain', 'Status Code'].forEach(header => {
     const th = document.createElement('th');
     th.innerText = header;
     th.style.padding = '6px';
+    th.style.backgroundColor = '#f2f2f2';
     headerRow.appendChild(th);
   });
-
 
   results.forEach(({ title, link, domain, status }) => {
     const row = table.insertRow();
@@ -58,6 +61,5 @@
     });
   });
 
-
   document.body.appendChild(table);
-})('Your link text here');
+})();
