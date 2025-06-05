@@ -1,4 +1,3 @@
-
 (async function () {
   const anchors = Array.from(document.querySelectorAll('a[href]'));
   const allLinks = [];
@@ -7,7 +6,6 @@
     const text = a.innerText.trim() || '(no text)';
     const href = a.href;
     const domain = new URL(href).hostname;
-
     allLinks.push({ text, href, domain });
   }
 
@@ -19,22 +17,25 @@
   console.log('%cAll Inline Links:', 'font-weight:bold; color:blue');
   console.table(allLinks);
 
-  const userInput = prompt('Enter link text or part of the URL to search (case-insensitive):');
-  if (!userInput) {
-    console.log('No input provided. Skipping filtering.');
-    return;
-  }
+  // Keep prompting user until they exit manually
+  while (true) {
+    const input = prompt('🔍 Enter link text or part of URL to search (type "exit" to stop):');
+    if (!input || input.toLowerCase() === 'exit') {
+      console.log('%cSearch ended by user.', 'color:gray');
+      break;
+    }
 
-  const lowerInput = userInput.toLowerCase();
-  const matched = allLinks.filter(link =>
-    link.text.toLowerCase().includes(lowerInput) ||
-    link.href.toLowerCase().includes(lowerInput)
-  );
+    const lowerInput = input.toLowerCase();
+    const matched = allLinks.filter(link =>
+      link.text.toLowerCase().includes(lowerInput) ||
+      link.href.toLowerCase().includes(lowerInput)
+    );
 
-  if (matched.length === 0) {
-    console.log(`No matches found for: "${userInput}"`);
-  } else {
-    console.log(`%cMatched Links for "${userInput}":`, 'font-weight:bold; color:green');
-    console.table(matched);
+    if (matched.length === 0) {
+      console.log(`❌ No matches found for: "${input}"`);
+    } else {
+      console.log(`✅ Matches for "${input}":`);
+      console.table(matched);
+    }
   }
 })();
