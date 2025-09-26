@@ -1,8 +1,7 @@
 (async function() {
   const brokenLinks = [];
-  const results = [];
 
-  // ✅ Adjust this selector to exclude navigation (example assumes left nav has a class "left-nav")
+  // ✅ Adjust selector to exclude navigation (assuming "left-nav" is the class for left navigation)
   const contentArea = document.querySelector("main") || document.body; 
   const navArea = document.querySelector(".left-nav");
 
@@ -20,27 +19,18 @@
 
     try {
       const res = await fetch(url, { method: "HEAD" });
-      results.push({
-        link_text: text,
-        url: url,
-        status: res.status
-      });
       if (!res.ok) {
         brokenLinks.push({ link_text: text, url: url, status: res.status });
       }
     } catch (e) {
-      results.push({ link_text: text, url: url, status: "Request Failed" });
       brokenLinks.push({ link_text: text, url: url, status: "Request Failed" });
     }
   }
-
-  console.log("✅ All inline links checked on this page.");
-  console.table(results);
 
   if (brokenLinks.length) {
     console.warn("⚠️ Broken links found:");
     console.table(brokenLinks);
   } else {
-    console.log("🎉 No broken links found!");
+    console.log("🎉 No broken links found on this page.");
   }
 })();
