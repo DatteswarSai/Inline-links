@@ -1,0 +1,66 @@
+(async function() {
+  const baseDomain = location.origin;
+  const visitedPages = new Set();
+  const brokenLinks = [];
+
+  async function checkPage(url) {
+    if (visitedPages.has(url)) return;
+    visitedPages.add(url);
+
+    console.log("🔎 Checking page:", url);
+
+    try {
+      const pageRes = await fetch(url);
+      if (!pageRes.ok) {
+        console.warn(`⚠️ Failed to load page ${url} [${pageRes.status}]`);
+        return;
+      }
+      const text = await pageRes.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, "text/html");
+
+      // All <a> links on this page
+      const anchors = Array.from(doc.querySelectorAll("a[href]"));
+
+      for (const a of anchors) {
+        const linkUrl = new URL(a.getAttribute("href"), baseDomain).href;
+        const linkText = a.textContent.trim() || "No Text";
+
+        // Only check same-domain links
+        if (!linkUrl.startsWith(baseDomain)) continue;
+
+        try {
+          const res = await fetch(linkUrl, { method: "HEAD" });
+          if (!res.ok) {
+            brokenLinks.push({
+              link_text: linkText,
+              url: linkUrl,
+              status: res.status,
+              found_on: url
+            });
+          }
+        } catch (e) {
+          brokenLinks.push({
+            link_text: linkText,
+            url: linkUrl,
+            status: "Request Failed",
+            found_on: url
+          });
+        }
+
+        // Recursively crawl other internal pages
+        if (!visitedPages.has(linkUrl) && linkUrl.startsWith(baseDomain)) {
+          await checkPage(linkUrl);
+        }
+      }
+    } catch (err) {
+      console.error("Error checking page:", url, err);
+    }
+  }
+
+  // Start from the current page
+  await checkPage(location.href);
+
+  console.log("✅ Scan completed!");
+  console.table(brokenLinks);
+})();
