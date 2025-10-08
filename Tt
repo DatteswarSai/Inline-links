@@ -1,0 +1,19 @@
+Responsive Implementation Logic
+
+Responsive behavior is handled through custom JavaScript.
+
+The custom JS executes only during responsive breakpoints (tablet and mobile view).
+
+7 PM
+
+Bootstrap is used for the responsive grid and layout control.
+
+Custom JS manages additional Ul adjustments and dynamic interactions required for smaller
+
+2 PM
+
+screens.
+
+No server-side changes are required - the logic runs completely on the client side.
+
+Ensures consistent behavior across devices and viewport sizes
