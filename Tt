@@ -1,19 +1,17 @@
-Responsive Implementation Logic
+Validate after fix - Endpoint anchor scroll issue in production (content hidden behind sticky header)
 
-Responsive behavior is handled through custom JavaScript.
+Description:
+When clicking a specific in-page anchor link on the endpoint page, the page incorrectly scrolls to the very top instead of the intended target element. As a result, the target content appears hidden behind the sticky header, impacting visibility and navigation usability. The fix ensures proper scroll alignment for anchor links so the target section is visible immediately below the fixed header.
 
-The custom JS executes only during responsive breakpoints (tablet and mobile view).
+Acceptance Criteria (AC):
+Given a user clicks an in-page anchor link (e.g., #target-element),
+When the link is triggered on the endpoint page,
+Then the page should smoothly scroll to the target element, aligning its top edge just below the sticky header, without jumping to the absolute top of the page.
 
-7 PM
+Description:
+In the QV environment, while attempting to edit a node, the paragraph section was not loading properly due to an AJAX request failure. This issue prevented editors from modifying paragraph components or saving updates. The fix should ensure that AJAX calls load the paragraph fields correctly without any console or network errors.
 
-Bootstrap is used for the responsive grid and layout control.
-
-Custom JS manages additional Ul adjustments and dynamic interactions required for smaller
-
-2 PM
-
-screens.
-
-No server-side changes are required - the logic runs completely on the client side.
-
-Ensures consistent behavior across devices and viewport sizes
+Acceptance Criteria (AC):
+Given a content editor opens a node in edit mode in the QV environment,
+When the paragraph section loads through an AJAX request,
+Then the paragraph fields should display correctly, allow edits, and save changes without any AJAX-related errors.
