@@ -1,17 +1,31 @@
-Validate after fix - Endpoint anchor scroll issue in production (content hidden behind sticky header)
-
 Description:
-When clicking a specific in-page anchor link on the endpoint page, the page incorrectly scrolls to the very top instead of the intended target element. As a result, the target content appears hidden behind the sticky header, impacting visibility and navigation usability. The fix ensures proper scroll alignment for anchor links so the target section is visible immediately below the fixed header.
 
-Acceptance Criteria (AC):
-Given a user clicks an in-page anchor link (e.g., #target-element),
-When the link is triggered on the endpoint page,
-Then the page should smoothly scroll to the target element, aligning its top edge just below the sticky header, without jumping to the absolute top of the page.
+Implement JavaScript-based redirection for mobile users when the "Search" module is accessed from the Developer Portal UI. If the user enters the search input on mobile, the page should redirect to /search/docs instead of performing inline search.
 
-Description:
-In the QV environment, while attempting to edit a node, the paragraph section was not loading properly due to an AJAX request failure. This issue prevented editors from modifying paragraph components or saving updates. The fix should ensure that AJAX calls load the paragraph fields correctly without any console or network errors.
+This functionality should trigger only on responsive (mobile) viewports, not on desktop.
 
-Acceptance Criteria (AC):
-Given a content editor opens a node in edit mode in the QV environment,
-When the paragraph section loads through an AJAX request,
-Then the paragraph fields should display correctly, allow edits, and save changes without any AJAX-related errors.
+Acceptance Criteria (Gherkin format):
+
+Scenario: Mobile user triggers search redirect
+
+Given the user is on the Developer Portal using a mobile device or responsive viewport,
+
+And the Search Ul module is visible,
+
+When the user presses enter in the search input field,
+
+Then the page should redirect to /search/docs,
+
+And this redirection should happen using JavaScript,
+
+And no redirection should occur on desktop view.
+
+Technical Notes:
+
+Add JS condition to check viewport width (<768px)
+
+Bind keypress/submit event for search input
+
+Prevent default action and redirect using window.location.href='/search/docs';
+
+Should not affect desktop or tablet
