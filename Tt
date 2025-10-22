@@ -1,31 +1,10 @@
+Title:
+Regression Test - CSP Generate Hash Button Functionality (Style and Script)
+
 Description:
+This regression test ensures that the CSP Generate Hash button correctly generates hashes for both inline style and script tags after the latest code updates. The functionality should accurately include newly added scripts and styles without duplication or omission. It must also reflect the correct CSP hash entries in the configuration or database.
 
-Implement JavaScript-based redirection for mobile users when the "Search" module is accessed from the Developer Portal UI. If the user enters the search input on mobile, the page should redirect to /search/docs instead of performing inline search.
-
-This functionality should trigger only on responsive (mobile) viewports, not on desktop.
-
-Acceptance Criteria (Gherkin format):
-
-Scenario: Mobile user triggers search redirect
-
-Given the user is on the Developer Portal using a mobile device or responsive viewport,
-
-And the Search Ul module is visible,
-
-When the user presses enter in the search input field,
-
-Then the page should redirect to /search/docs,
-
-And this redirection should happen using JavaScript,
-
-And no redirection should occur on desktop view.
-
-Technical Notes:
-
-Add JS condition to check viewport width (<768px)
-
-Bind keypress/submit event for search input
-
-Prevent default action and redirect using window.location.href='/search/docs';
-
-Should not affect desktop or tablet
+Acceptance Criteria (AC):
+Given the CSP Generate Hash button is available in the Drupal admin for a specific page,
+When the button is clicked after content changes,
+Then the system should generate and update valid CSP hashes for both inline style and script tags without errors or missing entries.
