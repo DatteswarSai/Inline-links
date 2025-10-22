@@ -63,3 +63,38 @@ Acceptance Criteria (AC):
 Given the CSS fix and aggregation configuration are applied to the IT SSO login page,
 When the page is loaded after deployment,
 Then all styles should render correctly without broken layouts, ensuring proper alignment, fonts, and responsive behavior.
+
+Title:
+Bug - Search - Left Navigation Menu Hiding Behind Search Header in Mobile Breakpoints
+
+Description:
+When the search bar is opened in mobile breakpoints (both portrait and landscape modes), the left navigation menu is getting overlapped and hidden behind the search header. This causes navigation links to become inaccessible and impacts usability on mobile devices. The expected behavior is that the left navigation and search components should appear properly layered and visible without overlap.
+
+Acceptance Criteria (AC):
+Given the search bar is opened on a mobile device,
+When the left navigation menu is expanded,
+Then both the search header and left navigation should display correctly without overlapping or hiding behind each other.
+
+Steps to Reproduce:
+
+1. Open the application on a mobile device (iOS or Android) or use browser responsive mode.
+
+
+2. Navigate to any page that contains both the search bar and left navigation menu.
+
+
+3. Open the search bar from the top header.
+
+
+4. Expand the left navigation menu while the search is still open.
+
+
+5. Observe the behavior of the left navigation and search header.
+
+
+
+Actual Result:
+The left navigation menu gets hidden behind the search header, making navigation links inaccessible.
+
+Expected Result:
+The left navigation menu and search header should be properly layered and visible without overlapping in both portrait and landscape modes.
