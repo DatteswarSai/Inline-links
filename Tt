@@ -52,3 +52,14 @@ Acceptance Criteria (AC):
 Given the fix for the user login icon and dropdown alignment issue is deployed,
 When the header section is viewed across devices and screen sizes,
 Then the user icon and dropdown should align properly with the search bar, or the search bar should be removed as per the updated design.
+
+Title:
+Validate After Fix - Debug IT SSO Login Page for CSS Broken and CSS Aggregation
+
+Description:
+This validation ensures that the CSS issues on the IT SSO login page are resolved. Earlier, the page layout and styles were broken due to improper CSS loading or aggregation issues. The fix should ensure that all CSS files are properly aggregated, minified, and loaded, restoring the correct UI design and responsiveness of the SSO login page.
+
+Acceptance Criteria (AC):
+Given the CSS fix and aggregation configuration are applied to the IT SSO login page,
+When the page is loaded after deployment,
+Then all styles should render correctly without broken layouts, ensuring proper alignment, fonts, and responsive behavior.
