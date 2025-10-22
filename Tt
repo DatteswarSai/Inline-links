@@ -31,3 +31,13 @@ Acceptance Criteria (AC):
 Given the database upgrade is completed in the QV environment,
 When smoke testing is performed,
 Then all critical application functionalities should work as expected without any data loss, errors, or broken dependencies.
+
+Smoke Test After Mock and Actual Release 4.9
+
+Description:
+This smoke test is conducted post mock and actual deployment of Release 4.9 to ensure that all key features, integrations, and configurations are functioning as expected. The purpose is to validate deployment stability and confirm that no major issues have been introduced during the release activities.
+
+Acceptance Criteria (AC):
+Given the mock and actual deployments of Release 4.9 are completed,
+When smoke testing is executed on the target environment,
+Then all major functionalities, pages, and modules should load and operate without critical or blocking issues.
