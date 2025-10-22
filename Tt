@@ -41,3 +41,14 @@ Acceptance Criteria (AC):
 Given the mock and actual deployments of Release 4.9 are completed,
 When smoke testing is executed on the target environment,
 Then all major functionalities, pages, and modules should load and operate without critical or blocking issues.
+
+Title:
+Validate After Fix - Bug - User Login Name Replaced with Icon and Dropdown Not Aligning with Search Bar
+
+Description:
+This validation ensures that the UI alignment issue of the user login section is resolved. Earlier, after replacing the user login name with an icon and dropdown, the layout appeared misaligned with the search bar, causing visual inconsistency. The fix should align the user icon and dropdown correctly or remove the search bar if not required, ensuring a clean and consistent header layout.
+
+Acceptance Criteria (AC):
+Given the fix for the user login icon and dropdown alignment issue is deployed,
+When the header section is viewed across devices and screen sizes,
+Then the user icon and dropdown should align properly with the search bar, or the search bar should be removed as per the updated design.
