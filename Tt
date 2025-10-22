@@ -8,3 +8,15 @@ Acceptance Criteria (AC):
 Given the CSP Generate Hash button is available in the Drupal admin for a specific page,
 When the button is clicked after content changes,
 Then the system should generate and update valid CSP hashes for both inline style and script tags without errors or missing entries.
+
+
+Title:
+Smoke Test After Code Merge to Master Branch
+
+Description:
+This smoke test ensures that the core functionalities of the application remain stable and operational after merging the latest code changes into the master branch. The objective is to verify that no critical issues, UI breaks, or deployment errors have been introduced due to the merge.
+
+Acceptance Criteria (AC):
+Given the new code has been merged into the master branch,
+When a smoke test is executed on the target environment,
+Then all key functionalities (UI load, login, navigation, content rendering, and form submissions) should work without any critical or blocking issues.
