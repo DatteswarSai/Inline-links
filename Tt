@@ -20,3 +20,14 @@ Acceptance Criteria (AC):
 Given the new code has been merged into the master branch,
 When a smoke test is executed on the target environment,
 Then all key functionalities (UI load, login, navigation, content rendering, and form submissions) should work without any critical or blocking issues.
+
+Title:
+Smoke Test After DB Upgrade - QV
+
+Description:
+This smoke test is performed to verify the stability and functionality of the QV environment after the database upgrade. The goal is to ensure that all modules, configurations, and key functionalities remain intact and perform as expected without data corruption or connectivity issues.
+
+Acceptance Criteria (AC):
+Given the database upgrade is completed in the QV environment,
+When smoke testing is performed,
+Then all critical application functionalities should work as expected without any data loss, errors, or broken dependencies.
