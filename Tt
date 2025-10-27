@@ -1,100 +1,464 @@
-Title:
-Regression Test - CSP Generate Hash Button Functionality (Style and Script)
-
-Description:
-This regression test ensures that the CSP Generate Hash button correctly generates hashes for both inline style and script tags after the latest code updates. The functionality should accurately include newly added scripts and styles without duplication or omission. It must also reflect the correct CSP hash entries in the configuration or database.
-
-Acceptance Criteria (AC):
-Given the CSP Generate Hash button is available in the Drupal admin for a specific page,
-When the button is clicked after content changes,
-Then the system should generate and update valid CSP hashes for both inline style and script tags without errors or missing entries.
+Excellent 👍 Let’s go deep into each topic, but in a structured, interview-style explanation so it’s easy for you to revise and confidently answer questions.
 
 
-Title:
-Smoke Test After Code Merge to Master Branch
+---
 
-Description:
-This smoke test ensures that the core functionalities of the application remain stable and operational after merging the latest code changes into the master branch. The objective is to verify that no critical issues, UI breaks, or deployment errors have been introduced due to the merge.
+🧩 1️⃣ SDLC – Software Development Life Cycle
 
-Acceptance Criteria (AC):
-Given the new code has been merged into the master branch,
-When a smoke test is executed on the target environment,
-Then all key functionalities (UI load, login, navigation, content rendering, and form submissions) should work without any critical or blocking issues.
+🔹 Definition:
 
-Title:
-Smoke Test After DB Upgrade - QV
+The Software Development Life Cycle (SDLC) is a systematic process used to design, develop, and maintain software.
+It defines all the stages involved in creating software — from requirement gathering to maintenance after deployment.
 
-Description:
-This smoke test is performed to verify the stability and functionality of the QV environment after the database upgrade. The goal is to ensure that all modules, configurations, and key functionalities remain intact and perform as expected without data corruption or connectivity issues.
+🔹 Goal:
 
-Acceptance Criteria (AC):
-Given the database upgrade is completed in the QV environment,
-When smoke testing is performed,
-Then all critical application functionalities should work as expected without any data loss, errors, or broken dependencies.
+To deliver high-quality software that meets or exceeds customer expectations, within budget and time constraints.
 
-Smoke Test After Mock and Actual Release 4.9
+🔹 Phases of SDLC:
 
-Description:
-This smoke test is conducted post mock and actual deployment of Release 4.9 to ensure that all key features, integrations, and configurations are functioning as expected. The purpose is to validate deployment stability and confirm that no major issues have been introduced during the release activities.
+1. Requirement Gathering and Analysis:
 
-Acceptance Criteria (AC):
-Given the mock and actual deployments of Release 4.9 are completed,
-When smoke testing is executed on the target environment,
-Then all major functionalities, pages, and modules should load and operate without critical or blocking issues.
+Business Analysts and stakeholders collect the needs of the client.
 
-Title:
-Validate After Fix - Bug - User Login Name Replaced with Icon and Dropdown Not Aligning with Search Bar
-
-Description:
-This validation ensures that the UI alignment issue of the user login section is resolved. Earlier, after replacing the user login name with an icon and dropdown, the layout appeared misaligned with the search bar, causing visual inconsistency. The fix should align the user icon and dropdown correctly or remove the search bar if not required, ensuring a clean and consistent header layout.
-
-Acceptance Criteria (AC):
-Given the fix for the user login icon and dropdown alignment issue is deployed,
-When the header section is viewed across devices and screen sizes,
-Then the user icon and dropdown should align properly with the search bar, or the search bar should be removed as per the updated design.
-
-Title:
-Validate After Fix - Debug IT SSO Login Page for CSS Broken and CSS Aggregation
-
-Description:
-This validation ensures that the CSS issues on the IT SSO login page are resolved. Earlier, the page layout and styles were broken due to improper CSS loading or aggregation issues. The fix should ensure that all CSS files are properly aggregated, minified, and loaded, restoring the correct UI design and responsiveness of the SSO login page.
-
-Acceptance Criteria (AC):
-Given the CSS fix and aggregation configuration are applied to the IT SSO login page,
-When the page is loaded after deployment,
-Then all styles should render correctly without broken layouts, ensuring proper alignment, fonts, and responsive behavior.
-
-Title:
-Bug - Search - Left Navigation Menu Hiding Behind Search Header in Mobile Breakpoints
-
-Description:
-When the search bar is opened in mobile breakpoints (both portrait and landscape modes), the left navigation menu is getting overlapped and hidden behind the search header. This causes navigation links to become inaccessible and impacts usability on mobile devices. The expected behavior is that the left navigation and search components should appear properly layered and visible without overlap.
-
-Acceptance Criteria (AC):
-Given the search bar is opened on a mobile device,
-When the left navigation menu is expanded,
-Then both the search header and left navigation should display correctly without overlapping or hiding behind each other.
-
-Steps to Reproduce:
-
-1. Open the application on a mobile device (iOS or Android) or use browser responsive mode.
-
-
-2. Navigate to any page that contains both the search bar and left navigation menu.
-
-
-3. Open the search bar from the top header.
-
-
-4. Expand the left navigation menu while the search is still open.
-
-
-5. Observe the behavior of the left navigation and search header.
+Deliverables: Business Requirement Document (BRD), Software Requirement Specification (SRS).
 
 
 
-Actual Result:
-The left navigation menu gets hidden behind the search header, making navigation links inaccessible.
+2. System Design:
 
-Expected Result:
-The left navigation menu and search header should be properly layered and visible without overlapping in both portrait and landscape modes.
+Architects and developers design the software structure (UI, database, architecture).
+
+Deliverables: Design Documents, Data Flow Diagrams, UML Diagrams.
+
+
+
+3. Implementation / Coding:
+
+Developers write the code using appropriate languages and frameworks.
+
+Deliverables: Source Code, Code Repositories (Git, GitLab, etc.).
+
+
+
+4. Testing:
+
+QA/Testers validate the software against requirements.
+
+Deliverables: Test Plans, Test Cases, Bug Reports.
+
+
+
+5. Deployment:
+
+The software is released to production (manual or automated deployment).
+
+Deliverables: Release Notes, Deployed Build.
+
+
+
+6. Maintenance:
+
+Ongoing updates, patches, or fixes based on user feedback or new requirements.
+
+
+
+
+
+---
+
+🧠 2️⃣ Requirement Analysis
+
+🔹 Definition:
+
+Requirement Analysis is the first phase in STLC where testers study and understand the requirements documents (like BRD/SRS) to identify what needs to be tested.
+
+🔹 Objective:
+
+To ensure all requirements are testable, clear, and complete before starting test design.
+
+🔹 Activities:
+
+Understand the business and functional needs.
+
+Identify testable requirements.
+
+Analyze feasibility (functional, performance, compatibility).
+
+Prepare Requirement Traceability Matrix (RTM).
+
+Clarify doubts with Business Analyst or Developer.
+
+
+🔹 Deliverables:
+
+Requirement Understanding Document
+
+RTM (Requirement Traceability Matrix)
+
+
+
+---
+
+🧮 3️⃣ Verification and Validation
+
+🔹 Definition:
+
+These are two complementary QA activities that ensure software quality.
+
+🔹 Verification → "Are we building the product right?"
+
+Focuses on process and design validation.
+
+Conducted without executing code.
+
+Example activities:
+
+Requirement reviews
+
+Design reviews
+
+Code walkthroughs
+
+Documentation checks
+
+
+
+🔹 Validation → "Are we building the right product?"
+
+Focuses on actual product behavior.
+
+Done by executing code to verify if it meets user expectations.
+
+Example activities:
+
+Functional testing
+
+System testing
+
+UAT (User Acceptance Testing)
+
+
+
+
+---
+
+🔁 4️⃣ STLC – Software Testing Life Cycle (Testing Cycle)
+
+🔹 Definition:
+
+STLC is the step-by-step process followed by QA/Testers to ensure software quality during testing.
+
+🔹 Phases of STLC:
+
+1. Requirement Analysis:
+
+Understand “what to test”.
+
+Identify testable and non-testable requirements.
+
+
+
+2. Test Planning:
+
+Define test strategy, scope, resources, tools, and timelines.
+
+Create a Test Plan document.
+
+
+
+3. Test Case Design / Development:
+
+Write detailed test cases with steps, input data, and expected results.
+
+Prepare test data.
+
+
+
+4. Test Environment Setup:
+
+Prepare the environment (servers, database, access, etc.).
+
+Install build or deployment.
+
+
+
+5. Test Execution:
+
+Execute test cases.
+
+Record results (Pass/Fail/Blocked).
+
+Log defects in a defect tracking tool (e.g., JIRA).
+
+
+
+6. Defect Reporting and Tracking:
+
+Report bugs, assign severity and priority.
+
+Track bug lifecycle until closure.
+
+
+
+7. Test Closure:
+
+Evaluate test completion criteria.
+
+Prepare a Test Summary Report.
+
+Conduct lessons learned meeting.
+
+
+
+
+
+---
+
+🧾 5️⃣ Defect Reporting
+
+🔹 Definition:
+
+When actual results differ from expected results during testing, it’s reported as a defect (bug).
+
+🔹 Key Fields in Defect Report:
+
+Defect ID
+
+Title/Summary
+
+Description
+
+Steps to Reproduce
+
+Expected Result
+
+Actual Result
+
+Screenshots/Logs (if applicable)
+
+Severity (Critical, Major, Minor)
+
+Priority (High, Medium, Low)
+
+Assigned To (Developer)
+
+Status (New, Open, Fixed, Retest, Closed, Rejected)
+
+
+🔹 Tools Used:
+
+JIRA
+
+Bugzilla
+
+Redmine
+
+Mantis
+
+Azure DevOps
+
+
+
+---
+
+🧪 6️⃣ Levels of Testing
+
+🔹 1. Unit Testing
+
+Performed by developers.
+
+Tests individual functions or modules.
+
+Example: Testing a login function only.
+
+
+🔹 2. Integration Testing
+
+Combines modules and tests interactions between them.
+
+Types: Top-down, Bottom-up, Big Bang.
+
+
+🔹 3. System Testing
+
+Complete system is tested end-to-end.
+
+Includes both functional and non-functional testing.
+
+
+🔹 4. Acceptance Testing
+
+Conducted by client or end-user.
+
+Ensures software meets business needs.
+
+Includes Alpha and Beta testing.
+
+
+
+---
+
+🧱 7️⃣ Types of Manual Testing
+
+🔹 Functional Testing:
+
+Checks if the application behaves according to requirements.
+
+🔹 Smoke Testing:
+
+Basic test to check build stability (“Is the build testable?”).
+
+🔹 Sanity Testing:
+
+Quick check after minor fix to ensure functionality works fine.
+
+🔹 Regression Testing:
+
+Ensures new changes haven’t broken existing features.
+
+🔹 Re-Testing:
+
+Testing again after a bug is fixed to verify the fix.
+
+🔹 Exploratory Testing:
+
+Ad-hoc testing without predefined test cases, based on experience.
+
+🔹 Usability Testing:
+
+Checks ease of use, UI consistency, and user experience.
+
+🔹 Compatibility Testing:
+
+Verifies app behavior on different browsers, devices, or OS.
+
+🔹 Performance Testing (manual baseline):
+
+Measures response time and speed before automation tools are used.
+
+
+---
+
+📋 8️⃣ Xray Test Case Creation and Execution in JIRA
+
+🔹 Xray Overview:
+
+Xray is a test management add-on for JIRA that helps manage and track testing activities within agile projects.
+
+🔹 Steps:
+
+1. Create a Test Issue:
+
+Add test steps, data, and expected results.
+
+
+
+2. Link Test to Requirement (Story/Epic):
+
+Maintain traceability between requirements and tests.
+
+
+
+3. Create Test Execution:
+
+Combine multiple test cases for execution.
+
+Mark results as Pass/Fail/Blocked.
+
+
+
+4. Log Defects:
+
+Link failed test cases to JIRA defects.
+
+
+
+5. Test Plans and Reports:
+
+Create Test Plans to group multiple executions.
+
+Generate traceability and execution reports.
+
+
+
+
+
+---
+
+🐞 9️⃣ Bug vs Defect – Difference
+
+Category	Bug	Defect
+
+Definition	Error found by a tester during testing	Issue found by client or in production
+Found By	QA/Testers	Client/End-users
+Stage Found	Testing Stage	After Release
+Example	Login button not working in QA	App crash in production
+
+
+💡 In short:
+All bugs are defects, but not all defects are bugs.
+
+
+---
+
+⚙️ 🔟 Automation Testing and Tools
+
+🔹 Definition:
+
+Automation testing uses scripts and tools to execute test cases automatically, reducing manual effort and human error.
+
+🔹 Advantages:
+
+Faster test execution
+
+Reusable test scripts
+
+Supports continuous integration
+
+Better coverage and accuracy
+
+
+🔹 When to Automate:
+
+Regression tests
+
+Repetitive and stable scenarios
+
+High-risk or high-volume test cases
+
+
+🔹 Popular Automation Tools:
+
+Purpose	Tools
+
+Web UI	Selenium, Cypress, Playwright
+API Testing	Postman, RestAssured, Karate
+Performance Testing	JMeter, LoadRunner
+Mobile Testing	Appium
+CI/CD Integration	Jenkins, GitLab CI
+Test Management	Xray, Zephyr
+
+
+
+---
+
+✅ Final Order Summary
+
+Step	Topic
+
+1️⃣	SDLC
+2️⃣	Requirement Analysis
+3️⃣	Verification and Validation
+4️⃣	Testing Cycle (STLC)
+5️⃣	Defect Reporting
+6️⃣	Levels of Testing
+7️⃣	Types of Manual Testing
+8️⃣	Xray Testcase Creation and Execution
+9️⃣	Bug vs Defect
+🔟	Automation and Tools
+
+
+
+---
+
+Would you like me to make this into a one-page PDF "Testing Concepts Cheat Sheet" (perfect for interview day quick revision)?
