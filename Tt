@@ -97,6 +97,7 @@ Then the left navigation must remain fixed in its designated container and shoul
 
 ---
 
+
 Title
 
 Validation after Bug Fix – Left navigation scrolling issue at bottom of page (Production)
@@ -117,3 +118,52 @@ This validation ensures that left navigation now remains fixed within its scroll
 Given a page with a long scrollable content and left navigation,
 When the user scrolls down to the bottom of the page,
 Then the left navigation should remain fixed inside its navigation container and must not scroll or move along with page content.
+
+Bug – CSP with Publisher role lost existing hashes; update required
+
+
+---
+
+✅ Description
+
+When a Publisher user generates CSP hashes, the system is removing previously existing hashes instead of appending or retaining them. This leads to missing CSP hash entries and causes CSP violations on pages created or updated by Publisher role users.
+
+The code must be updated so that newly generated hashes do not overwrite or delete existing hashes.
+
+
+---
+
+✅ Acceptance Criteria (GIVEN / WHEN / THEN)
+
+Given an existing page already having stored CSP hashes,
+When a Publisher user generates new CSP hashes for the same page,
+Then the system should retain the existing hashes and append the new ones without deleting any earlier hashes.
+
+
+
+Validation after fix – CSP with Publisher role losing existing hashes
+
+
+---
+
+✅ Description
+
+A fix was deployed to ensure that when a Publisher generates CSP hashes for a page, the system no longer removes existing hashes. Instead, previously stored hashes should remain intact, and new hashes should be appended.
+This validation confirms that the fix is working as expected across different pages and content types.
+
+
+---
+
+✅ Acceptance Criteria (GIVEN / WHEN / THEN)
+
+Given a page with existing CSP hashes,
+When a Publisher user triggers CSP hash generation again,
+Then the system should retain all old hashes and add the new ones without deleting or overwriting previous entries.
+
+
+
+
+
+
+
+
