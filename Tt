@@ -1,20 +1,69 @@
-Test – Configured Media Module Directory
+Drupal core upgrade to latest version
+
+✅ Description
+
+Upgrade the Drupal core to the latest stable version for security, performance improvements, and compatibility with contributed modules.
+Post-upgrade, all key site functionalities should continue to work without errors, including login, content editing, module integrations, and frontend UI.
+
+✅ Acceptance Criteria (GIVEN / WHEN / THEN)
+
+Given the Drupal core is upgraded to the latest stable version,
+When the application is deployed and basic functionalities are tested,
+Then the site should function normally without errors or module conflicts, and no existing features should break after the upgrade.
+
+Drupal contributed modules – Latest patches upgrade
+---
+
+✅ Description
+
+Apply the latest security and stability patches for all Drupal contributed modules used in the project.
+After applying the patches, verify that module functionalities continue to work as expected, and no existing pages, content types, or configurations are impacted.
+---
+
+✅ Acceptance Criteria (GIVEN / WHEN / THEN)
+
+Given the latest patches are applied to all contributed modules,
+When the application is deployed and core module functionalities are tested,
+Then all modules should work without errors or conflicts, and no existing functionality should break after patching.
+
+Update deployment scripts to add Support Data table to retention
 
 
 ---
 
 ✅ Description
 
-The Media module has been configured to store uploaded media files in a dedicated directory structure.
-Testing is required to ensure that:
+The deployment scripts need to be updated so that the Support Data database table is included in the retention process.
+This ensures that during deployments, environment refreshes, and cleanup operations, Support Data records are preserved and not wiped or lost.
+After updating the scripts, validation should confirm that Support Data remains intact across deployments.
 
-Media uploads follow the configured directory path,
 
-Files are stored in the correct folder structure,
+---
 
-Existing media is not affected,
+✅ Acceptance Criteria (GIVEN / WHEN / THEN)
 
-Media references on pages continue to work.
+Given the deployment script is updated to include the Support Data table in retention,
+When a deployment or environment refresh is executed,
+Then all existing records in the Support Data table should remain intact without deletion or loss.
+
+Analyze way to retain the Client List Email Taxonomy
+
+
+---
+
+✅ Description
+
+The Client List Email entries stored in taxonomy are getting removed or overwritten during environment refresh or deployment activities.
+An analysis is required to identify a reliable method to retain this taxonomy data across all deployments and environment syncs.
+The output of this analysis should include:
+
+Possible technical approaches
+
+Pros and cons of each
+
+Recommended solution
+
+Implementation effort estimate
 
 
 
@@ -22,7 +71,30 @@ Media references on pages continue to work.
 
 ✅ Acceptance Criteria (GIVEN / WHEN / THEN)
 
-Given the media module directory configuration is updated,
-When a user uploads new media files from the backend,
-Then the files should be stored in the correct configured directory structure and should be accessible without breaking any media references on the site.
+Given the Client List Email taxonomy is required to persist across deployments,
+When an analysis is completed,
+Then a recommended approach with pros/cons and effort estimate should be documented to ensure the taxonomy is retained without data loss.
+
+
+Remove PHP 7.4 from Production server and update Supervisor config to PHP 8.2
+
+
+---
+
+✅ Description
+
+PHP 7.4 is no longer required on the Production server after the upgrade to PHP 8.2.
+The older PHP version must be removed to avoid conflicts and security risks.
+Supervisor services that currently reference PHP 7.4 need to be reconfigured to use PHP 8.2 binaries.
+Post-update, all application services should run successfully without interruption.
+
+
+---
+
+✅ Acceptance Criteria (GIVEN / WHEN / THEN)
+
+Given PHP 7.4 has been removed and Supervisor is updated to use PHP 8.2,
+When all services are restarted,
+Then the application should run without errors, and no process should reference the old PHP 7.4 binary.
+
 
