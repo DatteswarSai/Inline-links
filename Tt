@@ -1,169 +1,28 @@
-Bug Title
-
-Inline link error fix and content update – Production
-
-Description
-
-Inline links in production are showing errors when clicked or redirected. Some links either:
-
-Navigate to an incorrect page,
-
-Return 404/not found,
-
-Or do not open at all.
-
-Additionally, content associated with those inline links needs correction (wrong URL, missing URL, or outdated content). This issue affects multiple pages in production and needs both link correction and updated content rollout.
-
-Steps to Reproduce
-
-1. Go to the affected production page(s).
-2. Click on inline hyperlink(s).
-3. Observe link behavior (Broken, wrong navigation, or no redirect).
-4. Review associated text/content that needs correction.
-
-Acceptance Criteria (AC)
-
-Given inline links are fixed and content is updated in production,
-When a user clicks on any inline link,
-Then it should redirect to the correct page without errors, and the displayed content should match the updated requirement.
-
-Title
-
-Validation after bug fix – Inline link error fix and content update in Production
-
-✅ Description
-
-Validation is required to ensure that all previously broken or incorrect inline links in production are now correctly updated. The updated content associated with these links must reflect the latest changes, and the links should redirect properly without errors.
-
-
----
-
-✅ Acceptance Criteria (AC)
-
-Given the inline link fixes and content updates are deployed in Production,
-When the links are clicked and corresponding content is reviewed,
-Then each link should open the correct target page without errors and the associated content should be accurate and updated.
-
-Bug – Left navigation is scrolling along with the page when reaching bottom of screen (Production)
+Test – Configured Media Module Directory
 
 
 ---
 
 ✅ Description
 
-In Production, the left navigation menu is not staying fixed in position. When the user scrolls down to the bottom of the page, the left navigation continues scrolling along with the page content.
-Expected behavior: Left navigation should remain fixed in place, or within its scrollable container, not move beyond its boundary.
+The Media module has been configured to store uploaded media files in a dedicated directory structure.
+Testing is required to ensure that:
 
-This causes UI misalignment and affects user experience, especially on long API documentation pages.
+Media uploads follow the configured directory path,
 
+Files are stored in the correct folder structure,
 
----
+Existing media is not affected,
 
-✅ Steps to Reproduce
+Media references on pages continue to work.
 
-1. Open any long page with left navigation on Production.
-
-
-2. Scroll down the main content to the bottom of the page.
-
-
-3. Observe that left navigation moves up or down instead of staying in its fixed scrollable container.
-
-
-
-
----
-
-✅ Actual Result
-
-Left navigation scrolls along with page content after reaching the bottom.
-
-
----
-
-✅ Expected Result
-
-Left navigation should stay fixed inside its scrolling container and should not move with main content.
-
-
----
-
-✅ Acceptance Criteria
-
-Given the left navigation is visible on a long page,
-When the user scrolls to the bottom of the page,
-Then the left navigation must remain fixed in its designated container and should not scroll with the page content.
-
-
----
-
-
-Title
-
-Validation after Bug Fix – Left navigation scrolling issue at bottom of page (Production)
-
-
----
-
-✅ Description
-
-A fix was deployed to resolve an issue where the left navigation was scrolling along with the page when reaching the bottom of long pages.
-This validation ensures that left navigation now remains fixed within its scrollable container and does not move with main page content.
 
 
 ---
 
 ✅ Acceptance Criteria (GIVEN / WHEN / THEN)
 
-Given a page with a long scrollable content and left navigation,
-When the user scrolls down to the bottom of the page,
-Then the left navigation should remain fixed inside its navigation container and must not scroll or move along with page content.
-
-Bug – CSP with Publisher role lost existing hashes; update required
-
-
----
-
-✅ Description
-
-When a Publisher user generates CSP hashes, the system is removing previously existing hashes instead of appending or retaining them. This leads to missing CSP hash entries and causes CSP violations on pages created or updated by Publisher role users.
-
-The code must be updated so that newly generated hashes do not overwrite or delete existing hashes.
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given an existing page already having stored CSP hashes,
-When a Publisher user generates new CSP hashes for the same page,
-Then the system should retain the existing hashes and append the new ones without deleting any earlier hashes.
-
-
-
-Validation after fix – CSP with Publisher role losing existing hashes
-
-
----
-
-✅ Description
-
-A fix was deployed to ensure that when a Publisher generates CSP hashes for a page, the system no longer removes existing hashes. Instead, previously stored hashes should remain intact, and new hashes should be appended.
-This validation confirms that the fix is working as expected across different pages and content types.
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given a page with existing CSP hashes,
-When a Publisher user triggers CSP hash generation again,
-Then the system should retain all old hashes and add the new ones without deleting or overwriting previous entries.
-
-
-
-
-
-
-
+Given the media module directory configuration is updated,
+When a user uploads new media files from the backend,
+Then the files should be stored in the correct configured directory structure and should be accessible without breaking any media references on the site.
 
