@@ -1,61 +1,23 @@
-Investigate Port 25 Conflict on QV Servers
+Support client email taxonomy access validation is not working.
+Non-admin users are able to view content of other client taxonomy terms. Access restriction based on mapped email domain/client is not applied.
 
 
 ---
 
-✅ Description
+✅ Acceptance Criteria
 
-Emails are failing or blocked on QV servers due to a possible conflict on Port 25, which is used for SMTP communication.
-An investigation is required to:
+Non-admin users can only access content belonging to their own client taxonomy.
 
-Identify which service/process is occupying Port 25
+Access to other client content must return 403 Access Denied.
 
-Determine whether the port is blocked, restricted, or intercepted
+Admin users continue to have full access to all content.
 
-Verify mail relay configurations
+Validation applies on node view and JSON/API routes.
 
-Provide a recommended fix or next steps
+Description
+Validation to ensure non-admin users cannot access support client email taxonomy. Only admins should view all records. Non-admin users should be restricted to their mapped client taxonomy.
 
-
-The outcome should include logs, root cause, and proposed resolution.
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given email communication relies on SMTP Port 25,
-When the investigation is completed,
-Then the root cause of the port conflict must be identified and a recommended solution documented for remediation
-
-Snyk Issue Debug and Find Alternative Fix
-
-
----
-
-✅ Description
-
-Some security vulnerabilities reported by Snyk are not getting resolved with the current approach or dependencies upgrade.
-This task is to investigate the issue in detail, identify the exact cause, and find an alternative fix if the direct patch is not available.
-The work includes:
-
-Debugging Snyk findings
-
-Checking dependency chain and library versions
-
-Verifying if patch/fix exists
-
-Exploring alternative options (override, upgrade, code change, replacement package)
-
-Documenting the recommended solution
-
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given Snyk has reported unresolved vulnerabilities,
-When debugging and analysis are completed,
-Then an alternative fix or recommended solution must be documented and shared for implementation.
-.
+✅ Acceptance Criteria (Given / When / Then)
+Given the support client email taxonomy is restricted
+When a non-admin user attempts to access a client taxonomy they are not mapped to
+Then the system should block access and return an access denied message
