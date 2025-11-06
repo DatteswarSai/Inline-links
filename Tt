@@ -1,69 +1,53 @@
-Drupal core upgrade to latest version
-
-✅ Description
-
-Upgrade the Drupal core to the latest stable version for security, performance improvements, and compatibility with contributed modules.
-Post-upgrade, all key site functionalities should continue to work without errors, including login, content editing, module integrations, and frontend UI.
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given the Drupal core is upgraded to the latest stable version,
-When the application is deployed and basic functionalities are tested,
-Then the site should function normally without errors or module conflicts, and no existing features should break after the upgrade.
-
-Drupal contributed modules – Latest patches upgrade
----
-
-✅ Description
-
-Apply the latest security and stability patches for all Drupal contributed modules used in the project.
-After applying the patches, verify that module functionalities continue to work as expected, and no existing pages, content types, or configurations are impacted.
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given the latest patches are applied to all contributed modules,
-When the application is deployed and core module functionalities are tested,
-Then all modules should work without errors or conflicts, and no existing functionality should break after patching.
-
-Update deployment scripts to add Support Data table to retention
+Investigate Port 25 Conflict on QV Servers
 
 
 ---
 
 ✅ Description
 
-The deployment scripts need to be updated so that the Support Data database table is included in the retention process.
-This ensures that during deployments, environment refreshes, and cleanup operations, Support Data records are preserved and not wiped or lost.
-After updating the scripts, validation should confirm that Support Data remains intact across deployments.
+Emails are failing or blocked on QV servers due to a possible conflict on Port 25, which is used for SMTP communication.
+An investigation is required to:
+
+Identify which service/process is occupying Port 25
+
+Determine whether the port is blocked, restricted, or intercepted
+
+Verify mail relay configurations
+
+Provide a recommended fix or next steps
+
+
+The outcome should include logs, root cause, and proposed resolution.
 
 
 ---
 
 ✅ Acceptance Criteria (GIVEN / WHEN / THEN)
 
-Given the deployment script is updated to include the Support Data table in retention,
-When a deployment or environment refresh is executed,
-Then all existing records in the Support Data table should remain intact without deletion or loss.
+Given email communication relies on SMTP Port 25,
+When the investigation is completed,
+Then the root cause of the port conflict must be identified and a recommended solution documented for remediation
 
-Analyze way to retain the Client List Email Taxonomy
+Snyk Issue Debug and Find Alternative Fix
 
 
 ---
 
 ✅ Description
 
-The Client List Email entries stored in taxonomy are getting removed or overwritten during environment refresh or deployment activities.
-An analysis is required to identify a reliable method to retain this taxonomy data across all deployments and environment syncs.
-The output of this analysis should include:
+Some security vulnerabilities reported by Snyk are not getting resolved with the current approach or dependencies upgrade.
+This task is to investigate the issue in detail, identify the exact cause, and find an alternative fix if the direct patch is not available.
+The work includes:
 
-Possible technical approaches
+Debugging Snyk findings
 
-Pros and cons of each
+Checking dependency chain and library versions
 
-Recommended solution
+Verifying if patch/fix exists
 
-Implementation effort estimate
+Exploring alternative options (override, upgrade, code change, replacement package)
+
+Documenting the recommended solution
 
 
 
@@ -71,81 +55,7 @@ Implementation effort estimate
 
 ✅ Acceptance Criteria (GIVEN / WHEN / THEN)
 
-Given the Client List Email taxonomy is required to persist across deployments,
-When an analysis is completed,
-Then a recommended approach with pros/cons and effort estimate should be documented to ensure the taxonomy is retained without data loss.
-
-
-Remove PHP 7.4 from Production server and update Supervisor config to PHP 8.2
-
-
----
-
-✅ Description
-
-PHP 7.4 is no longer required on the Production server after the upgrade to PHP 8.2.
-The older PHP version must be removed to avoid conflicts and security risks.
-Supervisor services that currently reference PHP 7.4 need to be reconfigured to use PHP 8.2 binaries.
-Post-update, all application services should run successfully without interruption.
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given PHP 7.4 has been removed and Supervisor is updated to use PHP 8.2,
-When all services are restarted,
-Then the application should run without errors, and no process should reference the old PHP 7.4 binary.
-
-
-Update QV with Release 4.9 branch
-
-
----
-
-✅ Description
-
-The QV environment needs to be updated with the latest Release 4.9 branch to validate new code changes, configurations, and deployments before moving to higher environments.
-This update includes syncing code, running deployment scripts, and ensuring all services come up successfully.
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given the Release 4.9 branch is deployed to the QV environment,
-When the deployment completes successfully,
-Then the QV environment should run the Release 4.9 code without errors and all services should be up and functioning.
-
-Prisma Alerts Remediation Phase 2 – Service Account Review
-
-
----
-
-✅ Description
-
-As part of Prisma security alerts remediation, Phase 2 focuses on auditing and reviewing all service accounts across environments.
-The goal is to identify inactive, unnecessary, or overly privileged service accounts and update, disable, or remove them as needed.
-This includes:
-
-Reviewing service account usage and purpose
-
-Validating permissions and scope
-
-Marking unused accounts for removal
-
-Updating roles for least-privilege access
-
-
-A final summary report should be produced after the review.
-
-
----
-
-✅ Acceptance Criteria (GIVEN / WHEN / THEN)
-
-Given Prisma alerts require service account cleanup,
-When the Phase 2 review is completed,
-Then a report of all service accounts with their status, permissions adjustments, and remediation actions should be documented and approved.
-
-
+Given Snyk has reported unresolved vulnerabilities,
+When debugging and analysis are completed,
+Then an alternative fix or recommended solution must be documented and shared for implementation.
+.
