@@ -1,135 +1,23 @@
-Title
-
-Document Required Configuration Changes for IT Servers
+Validate Resolved Bugs for December Release
 
 Description
 
-Create documentation outlining all configuration changes needed for the IT servers. This should include updates to server settings, environment variables, application configurations, service dependencies, security policies, and any adjustments required to support upcoming releases or migrations.
+Validate all bugs marked as resolved for the December release to ensure fixes work as expected and no regressions are introduced. Each bug fix must be verified against its original issue, and functionality should behave correctly across impacted areas.
 
 Acceptance Criteria
 
-Given the IT server configuration requirements are reviewed,
-When the documentation is prepared,
-Then it should clearly list all required configuration changes with proper details for implementation.
+Given all December release bugs are marked as resolved,
+When validation is performed for each bug fix,
+Then all fixes should function correctly without reoccurrence of the issues or any new regressions.
 
-Title
-
-Review Migration Codebase for IT Environment Compatibility
+Validate Snyk Issues After Resolution
 
 Description
 
-Review the existing migration codebase to ensure it is compatible with the IT environment. This includes validating configurations, modules, scripts, version compatibility, dependencies, and identifying any changes needed for successful execution of migration in IT.
+Validate all previously identified Snyk security issues to ensure that the applied fixes are effective. Confirm that no vulnerabilities reappear and that the system functions correctly after the security updates.
 
 Acceptance Criteria
 
-Given the migration codebase is available,
-When the compatibility review is completed,
-Then all required changes, risks, and compatibility gaps for the IT environment should be documented clearly.
-
-Perform Code Cleanup and Minor Fixes Identified
-
-Description
-
-Carry out code cleanup activities and implement the minor fixes identified during review or analysis. This includes removing unused code, correcting formatting issues, optimizing minor logic areas, and applying small bug fixes to improve code quality and maintainability.
-
-Acceptance Criteria
-
-Given the list of cleanup items and minor fixes is identified,
-When the cleanup and fixes are performed,
-Then the codebase should be updated with improved quality, and all identified issues should be resolved without affecting existing functionality.
-
-
-Title
-
-Set Up Test Data and Scenarios for IT Migration Validation
-
-Description
-
-Prepare and configure required test data and validation scenarios in the IT environment to verify the migration. This includes creating representative users, content, configurations, and edge cases that cover key business flows and technical use cases needed to validate the success of the IT migration.
-
-Acceptance Criteria
-
-GIVEN the IT migration needs to be validated,
-WHEN test data and scenarios are set up,
-THEN they should cover all key business flows and technical edge cases required to validate the IT migration end-to-end.
-
-Title
-
-Validate Migration API Endpoints and Connectivity on IT Servers
-
-Description
-
-Validate that all migration-related API endpoints are reachable and functioning correctly on the IT servers. This includes verifying endpoint URLs, authentication, request/response behavior, connectivity between services, and ensuring there are no errors or timeouts during migration-related API calls.
-
-Acceptance Criteria
-
-GIVEN migration API endpoints are deployed on the IT servers,
-WHEN connectivity and functional tests are executed against these endpoints,
-THEN all endpoints should respond successfully with expected status codes and data, without connectivity failures or unexpected errors.
-
-Title
-
-Execute Functional Validation of Migration Flow on IT
-
-Description
-
-Perform end-to-end functional validation of the entire migration flow on the IT environment. This includes verifying migrated data, content integrity, configurations, workflows, and system behavior to ensure the migration works as expected without issues.
-
-Acceptance Criteria
-
-GIVEN the migration flow is deployed on the IT environment,
-WHEN functional validation is executed,
-THEN all migrated data, content, and workflows should function correctly without errors or inconsistencies.
-
-Title
-
-Verify Logs, Error Handling, and Queue Workers on IT
-
-Description
-
-Review and validate logs, error handling mechanisms, and queue worker processes on the IT environment to ensure they function correctly after migration or deployment. This includes checking for error entries, verifying queue processing behavior, and ensuring no failures or misconfigurations exist.
-
-Acceptance Criteria
-
-Given logs, error handling, and queue workers are active on the IT environment,
-When they are reviewed and tested,
-Then logs should show no unexpected errors, error handling should work properly, and queue workers should process items without failures.
-
-Document Validation Findings and Required Enhancements
-
-Description
-
-Compile and document all findings identified during the validation process, including issues, gaps, improvement areas, and recommended enhancements. The documentation should clearly outline what was validated, results observed, and actions needed to improve the system or migration readiness.
-
-Acceptance Criteria
-
-Given the validation activities are completed,
-When the findings and enhancement needs are documented,
-Then the document should clearly capture issues, gaps, recommendations, and required enhancements for review and further action.
-
-
-Title
-
-Implementation / Deployment of Release 4.8.3
-
-Description
-
-Deploy Release 4.8.3 to the target environment, ensuring all code changes, configurations, database updates, and dependencies are applied correctly. The deployment should follow the standard release process, and post-deployment checks must confirm that all features in 4.8.3 function as expected.
-
-Acceptance Criteria
-
-Given Release 4.8.3 is ready for deployment,
-When the implementation/deployment steps are executed,
-Then the release should deploy successfully with all functionalities working without errors or regressions.
-Smoke Test in Preview Production After Updating with Prod DB, SSO Configurations, and File Store
-
-Description
-
-Perform a smoke test in the Preview Production environment after it has been updated with the latest production database, SSO configurations, and file store. The purpose is to validate that core functionalities, authentication, content rendering, and file access work correctly after the refresh.
-
-Acceptance Criteria
-
-Given the Preview Production environment is refreshed with production DB, SSO configs, and file store,
-When a smoke test is executed,
-Then all major functionalities, login flows, and file access should work without errors or broken behavior.
-
+Given the Snyk issue fixes are deployed,
+When validation is performed,
+Then all reported vulnerabilities should be resolved and no new security issues should be introduced.
