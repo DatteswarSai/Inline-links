@@ -1,23 +1,27 @@
-Validate Resolved Bugs for December Release
+Title
+
+Cards Validation for Release 5.0
 
 Description
 
-Validate all bugs marked as resolved for the December release to ensure fixes work as expected and no regressions are introduced. Each bug fix must be verified against its original issue, and functionality should behave correctly across impacted areas.
+Perform validation of all cards included in Release 5.0 to ensure each feature, fix, enhancement, or configuration update works as expected. This includes verifying functional behavior, UI changes, backend updates, integrations, and any associated workflows.
 
 Acceptance Criteria
 
-Given all December release bugs are marked as resolved,
-When validation is performed for each bug fix,
-Then all fixes should function correctly without reoccurrence of the issues or any new regressions.
+Given all cards for Release 5.0 are deployed,
+When validation is executed for each card,
+Then all functionalities should work as expected with no errors or regressions across impacted areas.
 
-Validate Snyk Issues After Resolution
+Title
+
+Smoke Test Post Card Merge to Master in Dev Environment
 
 Description
 
-Validate all previously identified Snyk security issues to ensure that the applied fixes are effective. Confirm that no vulnerabilities reappear and that the system functions correctly after the security updates.
+Perform a smoke test in the Dev environment after merging the latest cards into the master branch. The objective is to ensure that the merged changes do not introduce any breakages, and core functionalities continue to work as expected.
 
 Acceptance Criteria
 
-Given the Snyk issue fixes are deployed,
-When validation is performed,
-Then all reported vulnerabilities should be resolved and no new security issues should be introduced.
+Given the latest cards are merged into the master branch in the Dev environment,
+When a smoke test is performed,
+Then all major functionalities should work without errors or regression issues.
